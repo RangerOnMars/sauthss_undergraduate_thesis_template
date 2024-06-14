@@ -1,0 +1,42 @@
+\begin{titlepage}
+    %本页为自定义的封面
+    \centering
+    \quad\\
+    \vspace{3.5cm}
+	{\heiti\linespread{1.3}\zihao{2}\bfseries\getTitle\\}
+ 	\vspace{3cm}
+	\begin{table}[H]
+    	\centering
+		  \begin{tabular}{>{\Large}m{3.71cm}>{\arraybackslash\Large}m{6.89cm}}
+                {\zihao{-4} 学 \quad 院}&{\zihao{-4} \getInstituteName}\\
+                \cline{2-2}\\
+                {\zihao{-4} 专 \quad 业}&{\zihao{-4} \getMajorName}\\
+                \cline{2-2}\\
+                {\zihao{-4} 班 \quad 级}&{\zihao{-4} \getClassName}\\
+                \cline{2-2}\\
+			{\zihao{-4} 学 \quad 号}&{\zihao{-4} \getID}\\
+                \cline{2-2}\\
+			{\zihao{-4} 姓 \quad 名}&{\zihao{-4} \getAuthorName}\\
+                \cline{2-2}\\
+			{\zihao{-4} 指导教师}&{\zihao{-4} \getMentorName}\\
+                \cline{2-2}\\
+			{\zihao{-4} 负责教师}&{\zihao{-4} \getSupervisiorName}\\
+                \cline{2-2}\\
+		  \end{tabular}\\
+	\end{table}
+	\makeatother
+        \ifthenelse{\boolean{\needMentorsign}}
+        {
+            \vspace{1cm}\par
+            \hspace{10cm}
+            \includegraphics[height=2cm]{Content/mentor_sign.png}
+            \par
+        }
+        {
+            \vspace{3cm}
+        }
+        {\zihao{-4} \large 沈阳航空航天大学}\\
+	{\zihao{-4} \large  \getYY 年 \getMM 月}\\[2cm] % 日期
+	\vfill
+
+\end{titlepage}

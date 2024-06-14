@@ -1,0 +1,459 @@
+% -----------沈阳航空航天大学本科生Latex毕设模板------------- 
+% 版本：V1.0.0
+% Author : RangerOnMars
+% Email : guhao0521@gmail.com
+% ------------------------------------------------------ 
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[fontset=none]{ctex}
+
+\RequirePackage{iftex}
+\ifXeTeX\else
+    \thss@error{%
+      The Overleaf sauthss class requires Xe\TeX{}.\\\\
+      You must change your typesetting engine to, e.g.,
+      "xelatex" instead of "latex", "lualatex" or "pdflatex".
+    }
+\fi
+
+% 数学公式和化学方程式
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{latexsym,bm}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[subfigure]{tocloft}
+\usepackage[version=4]{mhchem}
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}%小写罗马数字
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}%大写罗马数字
+\makeatother
+
+% 插入PDF文件
+\usepackage[final]{pdfpages}
+
+% 引文使用
+\usepackage[backend=biber,style=gb7714-2015,gbpub=false]
+{biblatex}%align=gb7714-2015
+\addbibresource[location=local]{Ref/Collection.bib}
+
+% 插图使用
+\usepackage{subfigure, graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{thm-restate}
+
+% 表格使用
+\usepackage{bigstrut}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+
+% LaTeX距离设置：
+% mm	毫米	1 mm = 2.845 pt
+% pt	点		1 pt = 0.351 mm
+% bp	大点	1 bp = 0.353 mm > 1 pt
+% dd	迪多	1 dd = 0.376 mm = 1.07 pt
+% pc	排卡	1 pc = 4.218 mm = 12 pt
+% sp	定标点	65536 sp = 1 pt
+% cm	厘米	1 cm= 10 mm= 28.453 pt
+% cc	西塞罗	1 cc= 4.513 mm= 12 dd = 12.84 pt
+% in	英寸	1 in = 25.4 mm = 72.27 pt
+% ex	ex	1 ex = 当前字体尺寸中 x 的高度
+% em	em	1 em = 当前字体尺寸中 M 的宽度
+
+% 字体
+% \usepackage{fontspec, xunicode, xltxtra}
+% \usepackage{xeCJK}
+\setmainfont{Times New Roman}
+\setsansfont{Droid Sans}
+\setmonofont{Courier New}
+
+\setCJKmainfont[Path="Fonts/",AutoFakeBold,ItalicFont=simkai.ttf]{SIMSUN.TTC}
+\setCJKsansfont[Path="Fonts/",AutoFakeBold]{SIMHEI.TTF}
+\setCJKmonofont[Path="Fonts/",AutoFakeBold]{SIMFANG.TTF}
+
+
+% 需要的话
+\setCJKfamilyfont{zhfs}[Path=Fonts/,AutoFakeBold={2.5}]{SIMFANG.TTF}
+\setCJKfamilyfont{zhkai}[Path=Fonts/,AutoFakeBold={2.5}]{SIMKAI.TTF}
+\setCJKfamilyfont{zhsong}[Path=Fonts/,AutoFakeBold={2.5}]{SIMSUN.TTC}
+\setCJKfamilyfont{zhhei}[Path=Fonts/,AutoFakeBold={2.5}]{SIMHEI.TTF}
+
+\newcommand{\songti}{\CJKfamily{zhsong}}
+\newcommand{\heiti}{\CJKfamily{zhhei}}
+\newcommand{\fangsong}{\CJKfamily{zhfs}}
+\newcommand{\kaishu}{\CJKfamily{zhkai}}
+
+\DeclareCaptionFont{songti}{\songti}
+\DeclareCaptionFont{heiti}{\heiti}
+\DeclareCaptionFont{fangsong}{\fangsong}
+\DeclareCaptionFont{kaishu}{\kaishu}
+
+\usepackage{titlesec}
+\usepackage[a4paper,
+            left=3.0cm,
+            right=3.0cm,
+            top=2.6cm,
+            bottom=2.6cm,
+            headsep=0.7cm,
+            footskip=0.7cm]{geometry}
+%section等前后间距
+\titlespacing*{\section}{0pt}{1ex plus .0ex minus .0ex}{1ex plus .0ex}
+\titlespacing*{\subsection}{0pt}{0ex plus .0ex minus .0ex}{0ex plus .0ex}
+\numberwithin{equation}{section}
+%section等字体设置和字号大小
+
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{zhnumber}
+\usepackage{changepage}
+\usepackage{subcaption}
+\usepackage{etoolbox}
+\usepackage{fancyvrb}  % 用于 verbatim 的高级设置
+\usepackage{framed}    % 用于添加边框
+% 调整字间距并加框的 verbatim 环境
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{frame = single, tabsize = 4, fontsize=\footnotesize}
+
+% 防止”孤儿标题“
+\makeatletter
+% 该函数用于防止标题和内容跨页
+\makeatletter
+\newcommand{\Needspace}[1]{
+    \penalty-100
+    \begingroup
+    \setlength{\dimen@}{#1}%
+    \dimen@ii\pagegoal
+    \advance\dimen@ii -\pagetotal
+    % \the\baselineskip\the\dimen@:\the\dimen@ii
+    \ifdim \dimen@>\dimen@ii
+    \ifdim \dimen@ii> \baselineskip
+    \vfil
+    \fi
+    \break
+    \fi
+    \endgroup
+}
+% \newcommand{\Needspace}[1]{
+%     \penalty-100
+%     \begingroup
+%     \setlength{\dimen@}{#1}%
+%     \dimen@ii\pagegoal
+%     \advance\dimen@ii -\pagetotal
+%     % \the\baselineskip\the\dimen@:\the\dimen@ii
+%     \ifdim \dimen@>\dimen@ii
+%         \ifdim \dimen@ii>3\baselineskip
+%             \clearpage
+%         \else
+%             \ifdim \dimen@ii>\baselineskip
+%                 \par
+%                 \clearpage
+%             \else
+%                 \break
+%             \fi
+%         \fi
+%     \fi
+%     \endgroup
+% }
+\pretocmd{\Needspace}{\Hy@SaveLastskip}{}{}
+\apptocmd{\Needspace}{\Hy@RestoreLastskip}{}{}
+\makeatother
+
+\newenvironment{thesisdocument}
+{
+    % 正文格式
+    \zihao{-4}
+    \setlength{\baselineskip}{22pt}
+
+    \input{Content/titlepage.tex}
+    % 页眉页脚
+    \pagestyle{fancy}
+    \fancyhead[L]{}
+    \fancyhead[R]{}
+    \fancyhead[C]{{\zihao{5}\kaishu\bfseries 沈阳航空航天大学毕业设计(论文)}}
+    \fancyfoot[C]{\zihao{-5} \thepage}
+    \renewcommand{\headrulewidth}{0.2pt} %页眉横线宽度===========
+    
+    % 标题格式设置...
+    \titleformat{\section}[block]{\vspace*{-5pt}\linespread{1.25}\centering\heiti\zihao{3}\bfseries}{\arabic{section}\vspace{14pt}}{10pt}{}[]
+    \titleformat{\subsection}[block]{\vspace{16pt}\zihao{4}\bfseries}{\Needspace{80pt}\linespread{1.73}\arabic{section}.\arabic{subsection}\vspace{16pt}}{10pt}{}[]
+
+    \titleformat{\subsubsection}[block]{\vspace{6pt}\zihao{-4}\bfseries}{\Needspace{80pt}\linespread{1.73}\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\vspace{6pt}}{10pt}{}[]
+    
+    % 目录格式设置...
+    \renewcommand{\cftsecfont}{\zihao{4}\songti} % Section font
+    \renewcommand{\cftsecpagefont}{\zihao{4}}
+    \setlength{\cftbeforesecskip}{6pt}
+    
+    \renewcommand{\cftsubsecfont}{\zihao{-4}\songti} % Subsection font
+    \renewcommand{\cftsubsecpagefont}{\zihao{-4}}
+    \setlength{\cftbeforesubsecskip}{6pt}
+    
+    \renewcommand{\cftsubsubsecfont}{\zihao{-4}\songti} % Subsubsection font
+    \renewcommand{\cftsubsubsecpagefont}{\zihao{-4}}
+    \setlength{\cftbeforesubsubsecskip}{6pt}
+    
+    \renewcommand{\cftdotsep}{1.5}
+    \renewcommand{\cftsecleader}{\bfseries\cftdotfill{\cftdotsep}}
+    \fancypagestyle{plain}{\pagestyle{fancy}} %解决目录第一页无页眉问题
+
+    % 图片题注格式
+    \numberwithin{figure}{section}
+    \renewcommand{\thesection}{\arabic{section}}
+    \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+    \renewcommand{\thesubfigure}{\thesection.\arabic{figure}(\alph{subfigure})}
+    \captionsetup[figure]{font={heiti,small,stretch=1.2},labelsep=quad,belowskip=-10pt}
+    % 标题题注格式
+    \numberwithin{table}{section}
+    \captionsetup[table]{font={heiti,small,stretch=1.2},labelsep=quad}
+    % \renewcommand\thesubfigure{}
+}
+{
+}
+
+\newenvironment{thesisabstractcn}
+{
+    \renewcommand{\thepage}{\Roman{page}} % 将页码格式设置为罗马数字
+    \phantomsection\addcontentsline{toc}{section}{摘 \quad 要}\tolerance=500 %将摘要放进目录
+    {\quad\\\centering \heiti \zihao{3} \bfseries 摘 \quad 要\\[0.9cm]} 
+}
+{
+    \vspace{\baselineskip}
+    {\noindent \heiti \zihao{-4} \bfseries 关键词:}
+    {\zihao{-4} \getKeywords}\\
+    \newpage
+}
+
+\newenvironment{thesisabstracten}
+{
+    \renewcommand{\thepage}{\Roman{page}} % 将页码格式设置为罗马数字
+    \phantomsection\addcontentsline{toc}{section}{ABSTRACT}\tolerance=500 %将摘要放进目录
+    {\vspace*{-9.5mm}\centering \heiti \zihao{3} \linespread{1.7} \getTitleEn \\[0.6cm]} 
+    {\centering \heiti \zihao{3} \bfseries Abstract \\[0.27cm]} 
+}
+{
+    \vspace{\baselineskip}
+    {\heiti \zihao{-4} \bfseries Key words:}
+    {\noindent \zihao{-4} \getKeywordsEn}
+    \newpage
+}
+
+
+\newenvironment{thesisref}
+{
+
+    \phantomsection\addcontentsline{toc}{section}{参考文献}\tolerance=500 %将参考文献放进目录
+    {\quad\\\centering \heiti \zihao{3} \bfseries 参考文献\\[1cm]}
+}
+{
+    \printbibliography[heading=none]
+    \newpage
+}
+
+\newenvironment{thesisntfa}
+{
+    \phantomsection\addcontentsline{toc}{section}{项目非技术因素分析}\tolerance=500 %将非技术分析放进目录
+    {\quad\\\centering \heiti \zihao{3} \bfseries 课题方案非技术因素分析\\[1cm]}
+}
+{
+    \newpage
+}
+
+\newenvironment{thesisack}
+{
+
+    \phantomsection\addcontentsline{toc}{section}{致 \quad 谢}\tolerance=500 %将摘要放进目录
+    {\quad\\\centering \heiti \zihao{3} \bfseries 致 \quad 谢\\[1cm]} 
+}
+{
+}
+
+
+
+\newenvironment{thesissymboltable}
+{
+    \renewcommand{\thepage}{\Roman{page}} % 将页码格式设置为罗马数字
+    \phantomsection\addcontentsline{toc}{section}{符号表}\tolerance=500 %将摘要放进目录
+    {\centering \heiti \zihao{3} \bfseries 符号表\\}
+}
+{
+    \newpage
+}
+
+\newenvironment{thesiscontentstable}
+{
+    \renewcommand{\thepage}{\Roman{page}} % 将页码格式设置为罗马数字
+    \phantomsection\addcontentsline{toc}{section}{目\quad 录}\tolerance=500 %将目录放进目录
+    \renewcommand*\contentsname{\vspace*{0mm}\heiti \zihao{3} \bfseries 目 \quad 录}
+}
+{
+    \newpage
+    \setcounter{page}{1}
+}
+
+\newenvironment{thesischapter}
+{
+    % \newpage
+    \renewcommand{\thepage}{\arabic{page}}% 将页码格式设置为罗马数字
+}
+{
+    \newpage
+}
+
+%行间距
+\usepackage{setspace}
+
+\AtBeginDocument{
+    \setlength{\abovedisplayskip}{0.2cm}%公式前后间距，强行在导言区中设置
+    \setlength{\belowdisplayskip}{0.2cm}%
+    \setlength{\abovedisplayshortskip}{0.2cm}%
+    \setlength{\belowdisplayshortskip}{0.2cm}%
+    %图片和浮动对象间距
+    % \BeforeBeginEnvironment{figure}{\vspace{10pt}}
+    \setlength{\floatsep}{0pt plus 0pt minus 0pt}%出现在页面的顶部或底部的浮动对象之间的垂直距离。 缺省为 12pt plus 2pt minus 2pt
+    \setlength{\textfloatsep}{15pt plus 0pt minus 0pt}%出现在页面的顶部或底部的浮动对象与文本之间的垂直距离。缺省为 20pt plus 2pt minus 4pt
+    \setlength{\intextsep}{10pt plus 0pt minus 0pt}%出现在页面中间的浮动对象（如使用了 h 选项 的浮动对象）与上下方文本之间的垂直距离。 缺省为 12pt plus 2pt minus 2pt
+}
+% 间距有关变量：
+% \baselineskip：行基线间距。
+% \lineskip：行间距。
+% \baselinestretch：伸展因子。
+% \parskip：部分段间距。
+% \lineskiplimit：当两行字之间的距离小于\lineskiplimit时，行距自动设为\lineskip。
+% 段间距：\lineskip + \parskip
+% 行间距：\lineskip = \baselineskip * \baselinestretch
+
+%首行缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{2pt}
+
+%文本和图片等浮动对象占比
+\renewcommand{\floatpagefraction}{.85}%浮动页中浮动对象最大占比
+\renewcommand{\textfraction}{.15}%文本页中文本最小占比
+\renewcommand{\topfraction}{.65}%页面顶部可以用来放置浮动对象的高度与整个页面高度的最大比例
+\renewcommand{\bottomfraction}{.60}
+
+%符号列表间距设置
+% \setlength{\leftmargin}{1.2em}%左边界
+% \setlength{\parsep}{0ex}%段落间距
+% \setlength{\topsep}{1ex}%列表到上下文的垂直距离
+% \setlength{\itemsep}{0.5ex}%条目间距
+% \setlength{\labelsep}{0.3em}%标号和列表项之间的距离,默认0.5em
+% \setlength{\itemindent}{1.1em}%标签缩进量
+% \setlength{\listparindent}{0em} %段落缩进量
+
+% 列表格式
+\usepackage{enumitem}
+% \setlist[enumerate]{listparindent=\parindent}
+\setenumerate{label={(\arabic*)},leftmargin=0pt,itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt,itemindent=4\ccwd}
+\setitemize{leftmargin=0pt,itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt,itemindent=3\ccwd}
+\setdescription{leftmargin=0pt,itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt,itemindent=3\ccwd}
+% 代码设置
+\usepackage{framed}
+\usepackage{listings}
+\usepackage{color,xcolor}
+\definecolor{DarkBlue}{rgb}{0.05,0,1}
+\definecolor{DarkGreen}{rgb}{0.01,0.5,0.04}
+\definecolor{DarkPurple}{rgb}{0.67,0.02,0.98}
+% 定义一个新的语言
+\lstdefinelanguage{MATLAB}
+{morekeywords={if,else,end,for,while,break,continue,function}, %定义关键字
+sensitive=true, %是否大小写敏感
+morecomment=[l]{\%},
+morecomment=[l]{\%\%},
+morestring=[b]",
+morestring=[d]',}
+% 代码本体设置
+\lstdefinestyle{MATLAB}{
+    language=MATLAB,
+    basicstyle=\footnotesize\ttfamily,
+    backgroundcolor=\color{yellow!10},%背景色淡黄
+    frame=shadowbox,
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    keywordstyle=[1]\color{DarkBlue},  
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{orange}\underbar, 
+    stringstyle=\color{DarkPurple},
+    commentstyle=\color{DarkGreen},
+    numbers=left,
+    keepspaces=false,
+    numberstyle=\footnotesize,
+    % firstnumber=1,
+    % stepnumber=1,
+}
+\lstset{
+    basicstyle=\small\ttfamily,%基本样式+小号字体
+    frame=trbl,
+    %t-top,r-right,b-bottom,l-left
+    frameround=tttt,
+    %第一个字母表示右上角的拐角，然后顺时针地依次代表各个拐角。f表示方形，t表示弧形
+    % showstringspaces=false,
+    % identifierstyle=,
+    tabsize=4,
+    breaklines=true,%自动换行
+    % breakautoindent=true,%换行自动缩进
+    % breakindent=2em, %缩进距离
+    columns=fixed,%固定字间距
+    flexiblecolumns,
+    xleftmargin=2pt,%左边距
+    xrightmargin=0pt,
+    aboveskip=5pt,
+    belowskip=0pt,
+    lineskip=-1pt,%行距增加值
+    }
+
+% 算法框图
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% Tikz流程图
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,chains}
+\usetikzlibrary{calc}
+% 流程图定义基本形状
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+% 页码设置
+\pagestyle{empty}
+
+% 水印
+\usepackage{eso-pic}
+\newcommand\BackgroundPicture{%
+  \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+      \vfill
+      \centering%
+\begin{tikzpicture}[remember picture,overlay]
+\node [rotate=45,scale=6,text opacity=0.3] at (current page.center) {水印样例}; %中括号内是旋转角度，字体大小
+\end{tikzpicture}%
+      \vfill
+    }}}
+
+% 标题样式
+% \newcommand\subtitle[1]{{\Large #1}} % 定义副标题
+% \makeatletter % change default title style
+% \renewcommand*\maketitle{%
+%     \begin{center}% 居中标题
+%         % \bfseries % 默认粗体
+%         {\LARGE\bfseries\@title \par} % LARGE字号，默认粗体
+%         \vskip 1em% %%%  标题下面只有1em的缩进或margin
+%         {\@author \par}
+%         % {\global\let\author\@empty}%
+%         {\global\let\date\@empty}%
+%         \thispagestyle{empty} %  不设置页面样式
+%     \end{center}%
+%   \setcounter{footnote}{0}%
+% }
+\makeatother

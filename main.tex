@@ -1,0 +1,66 @@
+% Copyright (c) 2024 RangerOnMars
+
+%*********************************************************************
+% RangerOnMars-sauthss: 沈阳航空航天大学本科毕业设计论文模板
+% 2024/06/13 v1.0.0
+%
+% 重要提示：
+%   1. 当前overleaf版符合2021研究生学位论文要求，可通过图书馆审核
+%   2. 当前版本基于pkuthss v1.9.0
+%   3. 请使用UTF-8编码，XeLaTeX方式编译
+%   4. 请仔细阅读用户文档
+%   5. 修改、使用、发布本文档类请务必遵循LaTeX Project Public License和知识共享4.0
+%   6. 如有疑问github/iofu728/pkuthss上提问或联系作者@iofu728
+%*********************************************************************
+
+% --------------- 基本信息配置区--------------- 
+% 将此处替换为你的中文标题，需要换行处用\\隔开
+\newcommand{\getTitle}{{沈阳航空航天大学毕业设计（本科）\\ \LaTeX 模板}}
+% 将此处替换为你的英文标题，需要换行处用\\隔开
+\newcommand{\getTitleEn}{{SAU Thesis \LaTeX Template for Undergraduate}}
+% 将此处替换为你的中文关键词，词和词用；隔开
+\newcommand{\getKeywords}{{Latex；沈阳航空航天大学；深度学习}}
+% 将此处替换为你的英文关键词，词和词用;隔开
+\newcommand{\getKeywordsEn}{{Latex;SAU;Deep Learning}}
+% 将此处替换为你的姓名
+\newcommand{\getAuthorName}{{李田所}}
+% 将此处替换为你的学院
+\newcommand{\getInstituteName}{{自动化学院}}
+% 将此处替换为你的专业
+\newcommand{\getMajorName}{{自动化}}
+% 将此处替换为你的班级
+\newcommand{\getClassName}{{自动化2001班}}
+% 将此处替换为你的学号
+\newcommand{\getID}{{20341919810}}
+% 将此处替换为你的指导老师
+\newcommand{\getMentorName}{{张三}}
+% 将此处替换为你的负责教师
+\newcommand{\getSupervisiorName}{{王五}}
+% 是否在首页放置教师签名png,true为放置
+\newcommand{\needMentorsign}{false}% 0 to skip sign, 1 to sign mentor's name.
+% 答辩年份
+\newcommand{\getYY}{2024}
+% 答辩月份
+\newcommand{\getMM}{6}
+% --------------- 基本信息配置区--------------- 
+
+\input{Style/style}
+\begin{document}
+    \begin{thesisdocument}
+        % ---------------------------------------------------------------------
+        % 论文结构，具体内容在对应tex文件中
+        \input{Content/abstract.tex}%摘要
+        \input{Content/contents_table.tex}%目录
+        
+        \input{Content/chap1.tex}%具体章节，下同
+        \input{Content/chap2.tex}
+        \input{Content/chap3.tex}
+        \input{Content/chap4.tex}
+        \input{Content/chap5.tex}
+        \input{Content/chap6.tex}
+        \input{Content/chap7.tex}
+        \input{Content/ntfa.tex}%非技术因素分析
+        \input{Content/ref.tex}%引用
+        \input{Content/ack.tex}%致谢
+    \end{thesisdocument}
+\end{document}
