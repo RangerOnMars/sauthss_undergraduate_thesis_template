@@ -11,6 +11,7 @@
 
 Overleaf托管版本：
 https://www.overleaf.com/latex/templates/sau-undergraduate-thesis-template/cdkvjtgpxttv
+
 **注意**：
 托管模板可能存在更新不及时的情况，因此推荐从本仓库下载Release后在Overleaf中上传压缩包的方式使用。上传后初次打开时请将Compiler换为XeLatex，即可正常使用。
 
