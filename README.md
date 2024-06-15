@@ -7,7 +7,7 @@
 ### V1.0.0 2024/6/13 完成了使用手册编写。
 
 ## 1.概述
-本模板是沈阳航空航天大学毕业设计（本科）Latex非官方模板，模板参考2024年本科毕设模板制作，细微细节可能仍与Word存在出入。本模板适合有一定编程基础或 LATEX 写作经验的同学使用。
+本模板是沈阳航空航天大学毕业设计（本科）Latex非官方模板，模板参考2024年本科毕设模板制作，细微细节可能仍与Word存在出入。本模板适合有一定编程基础或 LATEX 写作经验的同学使用。如果觉得对你有帮助的话可以帮本项目点个Star⭐~~
 
 Overleaf托管版本：
 https://www.overleaf.com/latex/templates/sau-undergraduate-thesis-template/cdkvjtgpxttv
